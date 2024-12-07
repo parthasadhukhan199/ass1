@@ -14,7 +14,7 @@
         <h1 class="disply-6">
             fill the form
         </h1>
-        <section class="container  my-2 bg-success text-light">
+        <section class="container  my-2 bg-success text-light" id="main">
             <form>
 
                 <div class="row">
@@ -44,11 +44,11 @@
                 </div>
                 <fieldset class="form-group">
                     <div class="row">
-                        <legend class="col-form-label col-sm-2 pt-0">gender</legend>
+                        <legend class="col-form-label col-sm-2 pt-0" id="gender">gender</legend>
                         <div class="col-sm-10">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
-                                    value="option1" checked>
+                                    value="option1" >
                                 <label class="form-check-label" for="gridRadios1">
                                     Male
                                 </label>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="form-check disabled">
                                 <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
-                                    value="option3" disabled>
+                                    value="option3" >
                                 <label class="form-check-label" for="gridRadios3">
                                     Prefer Not to tell
                                 </label>
@@ -71,22 +71,56 @@
                     </div>
                 </fieldset>
 
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check">
-                        <label class="form-check-label" for="gridCheck">
-                            agree
-                        </label>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputCity">City</label>
+                      <input type="text" class="form-control" id="inputCity">
                     </div>
-                </div>
+                    <div class="form-group col-md-4">
+                      <label for="inputState">State</label>
+                      <select id="inputState" class="form-control">
+                        <option value="1" selected>Choose...</option>
+                        <option>west bengal</option>
+                        <option>punjab </option>
+                        <option>hariyana</option>
+                        <option>kerla</option>
+                        <option>odisha</option>
+                        <option>bihar</option>
+                      </select>
+                    
 
 
-                <button type="submit" class="btn btn-primary" id="btn">Submit </button>
+                <button type="submit" class="btn btn-primary my-2" id="btn" data-toggle="modal">Submit </button>
             </form>
 
         </section>
+        
     </div>
+
+    <!-- modal -->
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
     <script>
+
+        
         let val = document.getElementById("btn")
         
         
@@ -101,28 +135,39 @@
             let email = document.getElementById("email").value;
             let phon  = document.getElementById("phon").value;
             let add   = document.getElementById("Address").value;
-            let check = document.getElementById("check");
+            
+            let state = document.getElementById("inputState").value;
+            let bool =1;
 
             if(fname.length<1){
                 alert('enter first name');
+                bool = 0;
             }
             else if(lname.length<1){
                 alert('enter last name');
+                bool = 0;
             }
-            else if(email.length<1){
+           else if(email.length<1){
                 alert('enter email');
+                bool = 0;
             }
             else if(phon.length<1){
                 alert('enter phon number');
+                bool = 0;
             }
             else if(add.length<1){
                 alert('enter address');
+                bool = 0;
             }
-            else if(check.checked == false){
-                alert('1st agree ');
+           
+           else if(state == 1){
+                alert('select state ');
+                bool = 0;
             }
-            else {
-                alert('submited ');
+            
+            if (bool==1){
+                const modal = new bootstrap.Modal(document.getElementById('dataModal'));
+    modal.show()
             }
 
             
